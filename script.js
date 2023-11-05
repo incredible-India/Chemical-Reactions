@@ -2,16 +2,18 @@
 class chemical {
 
     constructor() {
-
+ 
     }
     emptybeaker = document.getElementById("emptybeaker");
     water = document.getElementById("DISTILLED_-WATER1");
-
+    ML = localStorage.getItem("flask");
+    lang = localStorage.getItem("lang");
+    
     intial_to_middle(elementId, translateX, translateTop = -150, rotateAngle = -20, comebackToIntialPosition) {
         //1st step move to the intial postion to middle position
         let element = document.getElementById(elementId);
-        console.log(element);
         //first it will go on top
+        element.style.transition = 'transform 0.5s ease'; 
         element.style.transform = `translateY(${translateTop}px)`
         //then translate to the middle beaker
         setTimeout(() => {
@@ -31,20 +33,21 @@ class chemical {
     }
 
     middle_to_final(elementID) {
-        let ML = "a";
-        if (ML == "a" || "A") {
+      
+        if (this.ML == "a") {
             this.MiddleBeakerAnimation(-80, -50, -40, 10,elementID);
-        } else if (ML == "b" || "B") {
-            this.MiddleBeakerAnimation(-80, -50, -40, 10,elementID);
-        } else if (ML == "c" || "C") {
-            this.MiddleBeakerAnimation(-80, -50, -40, 10,elementID);
+        } else if (this.ML == "b") {
+            this.MiddleBeakerAnimation(-90, -120, -40, 10,elementID);
+        } else if (this.ML == "c") {
+            this.MiddleBeakerAnimation(-90, -197, -40, 10,elementID);
         } else {
-            this.MiddleBeakerAnimation(-80, -50, -40, 10,elementID);
+            this.MiddleBeakerAnimation(-99, -280, -40, 10,elementID);
         }
     }
 
     MiddleBeakerAnimation(translateY, translateX, rotateAngle, comabackPosition,finalElementId) {
         //top
+        this.emptybeaker.style.transition = 'transform 0.5s ease'; 
         this.emptybeaker.style.transform = `translateY(${translateY}px)`
 
         setTimeout(() => {
@@ -59,7 +62,16 @@ class chemical {
 
     changeBeakerImage(status, ML = 5) {
         if (status == "fill")
-            this.emptybeaker.setAttribute("src", "./5mlbeaker.png");
+            {
+                if(this.ML=="a")
+                    this.emptybeaker.setAttribute("src", "./5mlbeaker.png");
+                else if(this.ML=="b")
+                    this.emptybeaker.setAttribute("src", "./10mlbeaker.png");
+                else if(this.ML=="c")
+                    this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
+                else 
+                    this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
+            }
         else
             this.emptybeaker.setAttribute("src", "./emptybeaker.png");
     }
@@ -94,20 +106,21 @@ class chemical {
     }
 
     DirectAnimationForDistillerWater() {
-        let ML = "a";
-        if (ML == "a" || "A") {
+
+        if (this.ML == "a") {
             this.DistillerWaterAnimataion(-110, -80, -40, 10)
-        } else if (ML == "b" || "B") {
-            this.MiddleBeakerAnimation(-80, -50, -40, 10);
-        } else if (ML == "c" || "C") {
-            this.MiddleBeakerAnimation(-80, -50, -40, 10);
+        } else if (this.ML == "b") {
+            this.DistillerWaterAnimataion(-190, -80, -40, 10);
+        } else if (this.ML == "c" ) {      
+            this.DistillerWaterAnimataion(-270, -50, -40, 10);
         } else {
-            this.MiddleBeakerAnimation(-80, -50, -40, 10);
+            this.DistillerWaterAnimataion(-340, -50, -40, 10);
         }
     }
 
     DistillerWaterAnimataion(translateX, translateY, rotateAngle, comebackPosition) {
         //top
+        this.water.style.transition = 'transform 0.5s ease'; 
         this.water.style.transform = `translateY(${translateY}px)`
 
         setTimeout(() => {
