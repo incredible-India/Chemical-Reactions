@@ -1,0 +1,70 @@
+.header{
+    border: 2px solid black;
+    height: 10vh;
+    background-color: rgb(41, 11, 11);
+    color: white;
+    text-align: center;
+}
+.container{
+    display: flex; 
+    border: 2px solid black;
+    height: 85vh;
+
+}
+.instructions{
+    background-color:black;
+    width: 20%;
+    height: 85vh;
+    color: white;
+    text-align: center;
+    
+
+}
+
+.lab{
+    background-color: rgb(2, 29, 29);
+    background-image: url(chemistry\ lab.png);
+    background-size: cover;
+    width: 80%;
+    height: 85vh;
+    position: relative;
+    
+    
+}
+.lab img{
+    position: relative;
+    top: 366px;
+    left: 80px;
+    cursor: pointer;
+}
+ .img{ 
+    height: 18%;
+    width: 6%;
+    position: relative;
+    left: 1200px;
+}
+.beaker{
+    height: 21%;
+    width: 8%;
+    
+}
+.water{
+    height: 22%;
+    width: 8%;
+    
+}
+.solution{
+    height: 28%;
+    width: 13%;
+    
+}
+.hydrogen1{
+    height: 30%;
+    width: 10%;
+}
+.stiring{
+    height: 18%;
+    width: 8%;
+    bottom: 80%;
+}
+
