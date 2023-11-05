@@ -58,6 +58,12 @@ class chemical {
             this.emptybeaker.style.transform = `translatex(${comabackPosition}px)`
             this.changeBeakerImage("empty");
         }, 1500);
+
+        setTimeout(() => {
+             //checking the finsl steps
+        if(this.isFinalStep(finalElementId))
+        this.DoFianlThingsAfterAllChemicalAdded();
+        }, 3000);
     }
 
     changeBeakerImage(status, ML = 5) {
@@ -131,6 +137,17 @@ class chemical {
             this.water.style.transform = `translatex(${comebackPosition}px)`
             this.water.setAttribute("src", "./DISTILLED_-WATER2.png")
         }, 1500);
+    }
+
+    isFinalStep(elementId){
+        if(elementId=="Hydrogenperoxide1")
+            return true;
+        else
+            return false
+    }
+
+    DoFianlThingsAfterAllChemicalAdded(){
+        alert("it was final");
     }
 }
 
