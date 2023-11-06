@@ -7,11 +7,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header"><h1>TO STUDY THE KINETICS OF IODIDE HYDROGEN PEROXIDE CLOCK REACTION</h1></header>
+
+
+
+<div class="popup" id="popup" style="display: flex;">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <h2 id="ins">Instrutions</h2>
+    <p style="width: 600px;"><b class="glov">Please ensure to wear appropriate protective gear such as gloves, goggles, and a lab coat before initiating the chemical reaction. Safety precautions are essential to prevent any potential hazards and ensure a safe experiment</b></p>
+    <img src="./gloves.png" alt="Popup Image" style="width: 300px; height: 300px;">
+
+    <button  onclick="closePopup()" style="display: flex; justify-content: center; align-items: center; background-color: green; color: black; height: 50px; width: 100px; font-size: 24px; cursor: pointer;">Proceed</button>
+  </div>
+</div>
+
+    <header class="header"><h1 id="header">TO STUDY THE KINETICS OF IODIDE HYDROGEN PEROXIDE CLOCK REACTION</h1></header>
     <br>
     <div class="container">
     <div class="instructions">
         <h2 class="instruct">INSTRUCTIONS</h2>
+        <h3 id="instruction"></h3>
         
     </div>
     <br>
