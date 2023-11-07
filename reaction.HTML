@@ -29,11 +29,26 @@
         <h2 class="instruct">INSTRUCTIONS</h2>
         <h3 id="instruction"></h3>
         <div class="con" style="margin-top: 20px;">
-            <img src="./2348493.jpg" alt="" style="height: 300px; width: 100%;"></div>
+            <img src="./2348493.jpg" alt="" style="height: 250px; width: 100%;"></div>
+            <p><b style="color: wheat;" id="timer">Timer</b></p>
+            <div class="stopwatch-container">
+           
+                <div class="stopwatch" id="stopwatch">00:00:00:00</div>
+                <div class="btn-container">
+                  <button onclick="startStopwatch()" style="background-color: greenyellow; color: black;">Start</button>
+                  <button onclick="stopStopwatch()" style="background-color: orangered; color: black;">Stop</button>
+                  <button onclick="resetStopwatch()" style="background-color: yellow; color: black;">Reset</button>
+                </div>
+              </div>
         
     </div>
+    
     <br>
+    <img src="./stir.png" alt="" class="stir" id="stir">
+    <!-- stopwatch -->
+
     <div class="lab">
+   
         <img src="5MLFLASK.png" class="flask img"  id="flask5ml" alt="flask5ml">
     <img src="10mlflask.png" class="flask img" id="flask10ml" alt="flask10ml">
 <img src="15mlflask.png" class="flask img" id="flask15ml" alt="flask15ml">

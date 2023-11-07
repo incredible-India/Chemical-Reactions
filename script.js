@@ -154,6 +154,7 @@ class chemical {
             document.getElementsByClassName("instruct")[0].innerText = "निर्देश"
             document.getElementsByClassName("glov")[0].innerText = "कृपया रासायनिक प्रतिक्रिया शुरू करने से पहले उचित सुरक्षात्मक गियर जैसे दस्ताने, चश्मा और एक लैब कोट पहनना सुनिश्चित करें। किसी भी संभावित खतरे को रोकने और सुरक्षित प्रयोग सुनिश्चित करने के लिए सुरक्षा सावधानियां आवश्यक हैं"
             document.getElementById("ins").innerText = "निर्देश"
+            document.getElementById("timer").innerText = "घड़ी"
         }
         else {
             document.getElementById("header").innerText = "TO STUDY THE KINETICS OF IODIDE HYDROGEN PEROXIDE CLOCK REACTION"
@@ -161,6 +162,7 @@ class chemical {
             document.getElementsByClassName("instruct")[0].innerText = "INSTRUCTIONS"
             document.getElementsByClassName("glov")[0].innerText = "Please ensure to wear appropriate protective gear such as gloves, goggles, and a lab coat before initiating the chemical reaction. Safety precautions are essential to prevent any potential hazards and ensure a safe experiment";
             document.getElementById("ins").innerText = "INSTRUCTIONS";
+            document.getElementById("timer").innerText = "Timer"
         }
     }
 
@@ -220,6 +222,14 @@ class chemical {
             return false
     }
 
+    //clicking on stir
+    stirAnimation(elementID){
+        document.getElementById(elementID).classList.add("transform-stir");
+        setTimeout(() => {
+            document.getElementById(elementID).classList.remove("transform-stir");
+        }, 3000);
+    }
+
     DoFianlThingsAfterAllChemicalAdded() {
         alert("it was final");
     }
@@ -239,9 +249,12 @@ Array.from(document.getElementsByClassName('clk')).forEach(e => {
 
     document.getElementById("DISTILLED_-WATER1").addEventListener('click', (e) => {
         chemicals.DirectAnimationForDistillerWater();
-    })
-
+    })  
 })
+//clicking on stir
+    document.getElementById("stir").addEventListener('click', (e) => {
+        chemicals.stirAnimation("stir")
+    });
 
 //pop up
 function openPopup() {
@@ -252,3 +265,41 @@ function openPopup() {
     document.getElementById("popup").style.display = "none";
   }
   
+//timer
+let timer;
+let milliseconds = 0;
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+
+function startStopwatch() {
+  timer = setInterval(function () {
+    milliseconds++;
+    if (milliseconds === 100) {
+      milliseconds = 0;
+      seconds++;
+      if (seconds === 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes === 60) {
+          minutes = 0;
+          hours++;
+        }
+      }
+    }
+    document.getElementById("stopwatch").innerText = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}:${milliseconds < 10 ? '0' + milliseconds : milliseconds}`;
+  }, 10);
+}
+
+function stopStopwatch() {
+  clearInterval(timer);
+}
+
+function resetStopwatch() {
+  clearInterval(timer);
+  milliseconds = 0;
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+  document.getElementById("stopwatch").innerText = "00:00:00:00";
+}

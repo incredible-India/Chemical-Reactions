@@ -31,17 +31,53 @@
     
     
 }
+@keyframes rotateAnimation {
+    0% {
+      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-32deg);
+    }
+    25% {
+      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-29deg);
+    }
+    50% {
+      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-32deg);
+    }
+    75% {
+      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-29deg);
+    }
+    100% {
+      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-32deg);
+      
+    }
+  }
+ .transform-stir {
+    position: relative;
+    transition: transform 0.5s ease;
+    animation: rotateAnimation 2s linear infinite;
+  }
 .lab img{
     position: relative;
     top: 366px;
     left: 80px;
     cursor: pointer;
+    z-index: 99999;
 }
  .img{ 
     height: 18%;
     width: 6%;
     position: relative;
     left: 1200px;
+}
+.stir{
+    height: 18%;
+    width: 6%;
+    position: fixed;
+    /* right: -35px; */
+    z-index: 99;
+    left: 310px;
+    top: 534px;
+    cursor: pointer;
+   
+
 }
 .beaker{
     height: 21%;
@@ -80,7 +116,7 @@
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 9999999;
   }
   
   .popup-content {
@@ -99,3 +135,41 @@
     z-index: 999;
   }
   
+  .stopwatch-container {
+    width: 300px;
+    height: 165px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-family: Arial, sans-serif;
+  }
+
+  .stopwatch {
+    position: absolute;
+  }
+
+  .btn-container {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .btn-container button {
+    padding: 8px 16px;
+  margin: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
