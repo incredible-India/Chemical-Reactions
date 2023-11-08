@@ -231,7 +231,37 @@ class chemical {
     }
 
     DoFianlThingsAfterAllChemicalAdded() {
-        alert("it was final");
+        this.makeBeakerBlue(); 
+        this.StopTimer();
+    }
+
+    makeBeakerBlue() {
+        let beaker = document.getElementById("flask20ml");
+        if(this.FlaskMl == 5){
+            setTimeout(() => {
+                beaker.setAttribute('src',"./90mlflask.png") 
+            }, 2000);
+         
+        }else if (this.FlaskMl == 10){
+            setTimeout(() => {
+                beaker.setAttribute('src',"./100mlflask.png")
+            }, 2000);
+          
+        }else if (this.FlaskMl == 15){
+            setTimeout(() => {
+                beaker.setAttribute('src',"./115mlflask.png")
+            }, 2000);
+           
+        }else if (this.FlaskMl == 20){
+            setTimeout(() => {
+                beaker.setAttribute('src',"./120mlflask.png")
+            }, 2000);
+        
+        }
+    }
+
+    StopTimer(){
+
     }
 }
 
