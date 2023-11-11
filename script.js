@@ -240,22 +240,22 @@ class chemical {
         if(this.FlaskMl == 5){
             setTimeout(() => {
                 beaker.setAttribute('src',"./90mlflask.png") 
-            }, 2000);
+            }, 265000);
          
         }else if (this.FlaskMl == 10){
             setTimeout(() => {
                 beaker.setAttribute('src',"./100mlflask.png")
-            }, 2000);
+            }, 138000);
           
         }else if (this.FlaskMl == 15){
             setTimeout(() => {
                 beaker.setAttribute('src',"./115mlflask.png")
-            }, 2000);
+            }, 96000);
            
         }else if (this.FlaskMl == 20){
             setTimeout(() => {
                 beaker.setAttribute('src',"./120mlflask.png")
-            }, 2000);
+            }, 74000);
         
         }
     }
@@ -318,6 +318,35 @@ function startStopwatch() {
       }
     }
     document.getElementById("stopwatch").innerText = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}:${milliseconds < 10 ? '0' + milliseconds : milliseconds}`;
+
+    if(localStorage.getItem("flask")=='a'){
+        setTimeout(() => {
+            clearInterval(timer);
+            document.getElementById("stopwatch").innerText = "00:04:25:00"
+            stopStopwatch();
+        }, 265000);
+    }
+   else if(localStorage.getItem("flask")=='b'){
+        setTimeout(() => {
+            clearInterval(timer);
+            document.getElementById("stopwatch").innerText = "00:02:18:00"
+            stopStopwatch();
+        }, 138000);
+    }
+   else if(localStorage.getItem("flask")=='c'){
+        setTimeout(() => {
+            clearInterval(timer);
+            document.getElementById("stopwatch").innerText = "00:01:36:00"
+            stopStopwatch();
+        }, 96000);
+    }
+   else if(localStorage.getItem("flask")=='d'){
+        setTimeout(() => {
+            clearInterval(timer);
+            document.getElementById("stopwatch").innerText = "00:01:14:00"
+            stopStopwatch();
+        }, 74000);
+    }
   }, 10);
 }
 
