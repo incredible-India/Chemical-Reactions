@@ -45,11 +45,11 @@ class chemical {
         if (this.ML == "a") {
             this.MiddleBeakerAnimation(-80, -50, -40, 10, elementID);
         } else if (this.ML == "b") {
-            this.MiddleBeakerAnimation(-90, -120, -40, 10, elementID);
+            this.MiddleBeakerAnimation(-80, -50, -40, 10, elementID);
         } else if (this.ML == "c") {
-            this.MiddleBeakerAnimation(-90, -197, -40, 10, elementID);
+            this.MiddleBeakerAnimation(-80, -50, -40, 10, elementID);
         } else {
-            this.MiddleBeakerAnimation(-99, -280, -40, 10, elementID);
+            this.MiddleBeakerAnimation(-80, -50, -40, 10, elementID);
         }
     }
 
@@ -192,11 +192,11 @@ class chemical {
         if (this.ML == "a") {
             this.DistillerWaterAnimataion(-110, -80, -40, 10)
         } else if (this.ML == "b") {
-            this.DistillerWaterAnimataion(-190, -80, -40, 10);
+            this.DistillerWaterAnimataion(-110, -80, -40, 10)
         } else if (this.ML == "c") {
-            this.DistillerWaterAnimataion(-270, -50, -40, 10);
+            this.DistillerWaterAnimataion(-110, -80, -40, 10)
         } else {
-            this.DistillerWaterAnimataion(-340, -50, -40, 10);
+            this.DistillerWaterAnimataion(-110, -80, -40, 10)
         }
     }
 
@@ -362,3 +362,19 @@ function resetStopwatch() {
   hours = 0;
   document.getElementById("stopwatch").innerText = "00:00:00:00";
 }
+
+document.getElementById("flask20ml").addEventListener("mouseover", function(e){
+    if(localStorage.getItem("flask")=='a'){
+        document.getElementById("flask20ml").setAttribute("title", "Flask A 5ML");
+    }
+   else if(localStorage.getItem("flask")=='b'){
+    document.getElementById("flask20ml").setAttribute("title", "Flask B 10ML");
+    }
+   else if(localStorage.getItem("flask")=='c'){
+    document.getElementById("flask20ml").setAttribute("title", "Flask C 15ML");
+    }
+   else if(localStorage.getItem("flask")=='d'){
+    document.getElementById("flask20ml").setAttribute("title", "Flask D 20ML");
+   }
+  
+})
