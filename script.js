@@ -31,6 +31,7 @@ class chemical {
         setTimeout(() => {
             element.style.transform = `translatex(${comebackToIntialPosition}px)`
             element.setAttribute("src", this.changeImageAsPerSelectedBeaker(elementId)[1]);
+          
             this.changeBeakerImage("fill");
 
             setTimeout(() => {
@@ -44,15 +45,37 @@ class chemical {
 
         if (this.ML == "a") {
             this.MiddleBeakerAnimation(-80, -50, -40, 10, elementID);
+            setTimeout(() => {
+                this.final_Beaker_Chemical_Ammount(this.changeImageAsPerSelectedBeaker(elementID)[2])
+            }, 1500);
         } else if (this.ML == "b") {
             this.MiddleBeakerAnimation(-80, -50, -40, 10, elementID);
+            setTimeout(() => {
+                this.final_Beaker_Chemical_Ammount(this.changeImageAsPerSelectedBeaker(elementID)[2])
+            }, 1500);
         } else if (this.ML == "c") {
             this.MiddleBeakerAnimation(-80, -50, -40, 10, elementID);
+            setTimeout(() => {
+                this.final_Beaker_Chemical_Ammount(this.changeImageAsPerSelectedBeaker(elementID)[2])
+            }, 1500);
         } else {
             this.MiddleBeakerAnimation(-80, -50, -40, 10, elementID);
+            setTimeout(() => {
+                this.final_Beaker_Chemical_Ammount(this.changeImageAsPerSelectedBeaker(elementID)[2])
+            }, 1500);
         }
     }
 
+    final_Beaker_Chemical_Ammount(step=1){
+        if(step==1)
+        document.getElementsByClassName("finalFlask")[0].setAttribute("src","./90mlflask.png");
+        else if(step==2)
+        document.getElementsByClassName("finalFlask")[0].setAttribute("src","./100mlflask.png");
+        else if(step==3)
+        document.getElementsByClassName("finalFlask")[0].setAttribute("src","./115mlflask.png");
+        else if(step==4)
+        document.getElementsByClassName("finalFlask")[0].setAttribute("src","./120mlflask.png");
+    }
     MiddleBeakerAnimation(translateY, translateX, rotateAngle, comabackPosition, finalElementId) {
         //top
         this.emptybeaker.style.transition = 'transform 0.5s ease';
@@ -77,13 +100,17 @@ class chemical {
     changeBeakerImage(status, ML = 5) {
         if (status == "fill") {
             if (this.ML == "a")
-                this.emptybeaker.setAttribute("src", "./5mlbeaker.png");
+              {  this.emptybeaker.setAttribute("src", "./5mlbeaker.png");
+               }
             else if (this.ML == "b")
-                this.emptybeaker.setAttribute("src", "./10mlbeaker.png");
+          {      this.emptybeaker.setAttribute("src", "./10mlbeaker.png");
+               }
             else if (this.ML == "c")
-                this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
+            {    this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
+               }
             else
-                this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
+             {   this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
+               }
         }
         else
             this.emptybeaker.setAttribute("src", "./emptybeaker.png");
@@ -91,16 +118,16 @@ class chemical {
     //this will reduce the ammount of chemical in beaker
     changeImageAsPerSelectedBeaker(elementId) {
         if (elementId == "Sulphuricacid1") {
-            return [elementId, "./SulphuricAcid2.png"]
+            return [elementId, "./SulphuricAcid2.png",1]
         }
         else if (elementId == "SodiumThiosulphate1") {
-            return [elementId, "./SodiumThiosulphate2.png"]
+            return [elementId, "./SodiumThiosulphate2.png",2]
         }
         else if (elementId == "starchsolution1") {
-            return [elementId, "./STATCHSOLUTION1.png"]
+            return [elementId, "./starchSolHalf.png",3]
         }
         else if (elementId == "Hydrogenperoxide1") {
-            return [elementId, "./Hydrogen_peroxide_solution_3__2.png"]
+            return [elementId, "./H2o2.png",4]
         }
     }
     //convert flask into the ML
@@ -141,9 +168,12 @@ class chemical {
     //update the information in instruction box based on slected info
     UpdateInstruction(id) {
         if (this.lang == "hi")
-            this.instruct.innerText = this.Instructions(id)[1];
+         {   this.instruct.innerText = this.Instructions(id)[1];
+            this.TextInstructionTOSpeech(id);
+        }
         else
-            this.instruct.innerText = this.Instructions(id)[0];
+            {this.instruct.innerText = this.Instructions(id)[0];
+                this.TextInstructionTOSpeech(id);}
     }
     //other information print based on selected languages
     OtherInfoInBasedOnSelectedLanguage() {
@@ -260,6 +290,23 @@ class chemical {
         }
     }
 
+    TextInstructionTOSpeech(id){
+//       
+
+// // Get the SpeechSynthesis object and speak the utterance
+
+        if (this.lang == "hi")
+        this.instruct.innerText = this.Instructions(id)[1];
+    else
+        this.instruct.innerText = this.Instructions(id)[0];
+
+        var utterance = new SpeechSynthesisUtterance(this.instruct.innerText.toString());
+        utterance.lang = 'hi-IN'
+        var synth = window.speechSynthesis;
+     
+synth.speak(utterance);
+    }
+
     StopTimer(){
 
     }
@@ -292,6 +339,12 @@ function openPopup() {
   }
   
   function closePopup() {
+    let flask =  document.getElementById('flask');
+    let lang =  document.getElementById('lang');
+
+    localStorage.clear();
+    localStorage.setItem("flask",flask.value)
+    localStorage.setItem("lang",lang.value)
     document.getElementById("popup").style.display = "none";
   }
   

@@ -178,3 +178,9 @@
   #flask20ml{
     top: 381px;
   }
+
+  .permission{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
