@@ -1,13 +1,13 @@
 //process steps function
 class chemical {
-    
+
     emptybeaker = document.getElementById("emptybeaker");
     water = document.getElementById("DISTILLED_-WATER1");
     ML = localStorage.getItem("flask");
-    FlaskMl="";
+    FlaskMl = "";
     lang = localStorage.getItem("lang");
     instruct = document.getElementById("instruction");
-
+    step =3;
     constructor() {
         //chnage the info language based on user selection
         this.OtherInfoInBasedOnSelectedLanguage();
@@ -18,6 +18,9 @@ class chemical {
     }
 
     intial_to_middle(elementId, translateX, translateTop = -150, rotateAngle = -20, comebackToIntialPosition) {
+        //increase the step
+        this.Validate(this.step);
+        ++this.step;
         //1st step move to the intial postion to middle position
         let element = document.getElementById(elementId);
         //first it will go on top
@@ -31,7 +34,7 @@ class chemical {
         setTimeout(() => {
             element.style.transform = `translatex(${comebackToIntialPosition}px)`
             element.setAttribute("src", this.changeImageAsPerSelectedBeaker(elementId)[1]);
-          
+
             this.changeBeakerImage("fill");
 
             setTimeout(() => {
@@ -66,15 +69,15 @@ class chemical {
         }
     }
 
-    final_Beaker_Chemical_Ammount(step=1){
-        if(step==1)
-        document.getElementsByClassName("finalFlask")[0].setAttribute("src","./90mlflask.png");
-        else if(step==2)
-        document.getElementsByClassName("finalFlask")[0].setAttribute("src","./100mlflask.png");
-        else if(step==3)
-        document.getElementsByClassName("finalFlask")[0].setAttribute("src","./115mlflask.png");
-        else if(step==4)
-        document.getElementsByClassName("finalFlask")[0].setAttribute("src","./120mlflask.png");
+    final_Beaker_Chemical_Ammount(step = 1) {
+        if (step == 1)
+            document.getElementsByClassName("finalFlask")[0].setAttribute("src", "./90mlflask.png");
+        else if (step == 2)
+            document.getElementsByClassName("finalFlask")[0].setAttribute("src", "./100mlflask.png");
+        else if (step == 3)
+            document.getElementsByClassName("finalFlask")[0].setAttribute("src", "./115mlflask.png");
+        else if (step == 4)
+            document.getElementsByClassName("finalFlask")[0].setAttribute("src", "./120mlflask.png");
     }
     MiddleBeakerAnimation(translateY, translateX, rotateAngle, comabackPosition, finalElementId) {
         //top
@@ -99,18 +102,18 @@ class chemical {
 
     changeBeakerImage(status, ML = 5) {
         if (status == "fill") {
-            if (this.ML == "a")
-              {  this.emptybeaker.setAttribute("src", "./5mlbeaker.png");
-               }
-            else if (this.ML == "b")
-          {      this.emptybeaker.setAttribute("src", "./10mlbeaker.png");
-               }
-            else if (this.ML == "c")
-            {    this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
-               }
-            else
-             {   this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
-               }
+            if (this.ML == "a") {
+                this.emptybeaker.setAttribute("src", "./5mlbeaker.png");
+            }
+            else if (this.ML == "b") {
+                this.emptybeaker.setAttribute("src", "./10mlbeaker.png");
+            }
+            else if (this.ML == "c") {
+                this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
+            }
+            else {
+                this.emptybeaker.setAttribute("src", "./15mlbeaker.png");
+            }
         }
         else
             this.emptybeaker.setAttribute("src", "./emptybeaker.png");
@@ -118,28 +121,28 @@ class chemical {
     //this will reduce the ammount of chemical in beaker
     changeImageAsPerSelectedBeaker(elementId) {
         if (elementId == "Sulphuricacid1") {
-            return [elementId, "./SulphuricAcid2.png",1]
+            return [elementId, "./SulphuricAcid2.png", 1]
         }
         else if (elementId == "SodiumThiosulphate1") {
-            return [elementId, "./SodiumThiosulphate2.png",2]
+            return [elementId, "./SodiumThiosulphate2.png", 2]
         }
         else if (elementId == "starchsolution1") {
-            return [elementId, "./starchSolHalf.png",3]
+            return [elementId, "./starchSolHalf.png", 3]
         }
         else if (elementId == "Hydrogenperoxide1") {
-            return [elementId, "./H2o2.png",4]
+            return [elementId, "./H2o2.png", 4]
         }
     }
     //convert flask into the ML
-    FlaskOfMl(){
+    FlaskOfMl() {
         if (this.ML == "a")
-                this.FlaskMl =5
-            else if (this.ML == "b")
-                this.FlaskMl =10
-            else if (this.ML == "c")
-                this.FlaskMl =15
-            else
-                this.FlaskMl =20
+            this.FlaskMl = 5
+        else if (this.ML == "b")
+            this.FlaskMl = 10
+        else if (this.ML == "c")
+            this.FlaskMl = 15
+        else
+            this.FlaskMl = 20
     }
     //showing the instructions
     Instructions(instructionId) {
@@ -167,13 +170,14 @@ class chemical {
     }
     //update the information in instruction box based on slected info
     UpdateInstruction(id) {
-        if (this.lang == "hi")
-         {   this.instruct.innerText = this.Instructions(id)[1];
+        if (this.lang == "hi") {
+            this.instruct.innerText = this.Instructions(id)[1];
             this.TextInstructionTOSpeech(id);
         }
-        else
-            {this.instruct.innerText = this.Instructions(id)[0];
-                this.TextInstructionTOSpeech(id);}
+        else {
+            this.instruct.innerText = this.Instructions(id)[0];
+            this.TextInstructionTOSpeech(id);
+        }
     }
     //other information print based on selected languages
     OtherInfoInBasedOnSelectedLanguage() {
@@ -197,7 +201,7 @@ class chemical {
     }
 
     movementOfSelectedBeaker(elementId) {
-       
+
         if (elementId == "Sulphuricacid1") {
             chemicals.intial_to_middle(elementId, -160, -150, -50, 20);
             this.UpdateInstruction(4);
@@ -217,6 +221,7 @@ class chemical {
     }
 
     DirectAnimationForDistillerWater() {
+       this.Validate(2);
         this.UpdateInstruction(3);
 
         if (this.ML == "a") {
@@ -253,7 +258,7 @@ class chemical {
     }
 
     //clicking on stir
-    stirAnimation(elementID){
+    stirAnimation(elementID) {
         document.getElementById(elementID).classList.add("transform-stir");
         setTimeout(() => {
             document.getElementById(elementID).classList.remove("transform-stir");
@@ -261,93 +266,109 @@ class chemical {
     }
 
     DoFianlThingsAfterAllChemicalAdded() {
-        this.makeBeakerBlue(); 
+        this.makeBeakerBlue();
         this.StopTimer();
     }
 
     makeBeakerBlue() {
         let beaker = document.getElementById("flask20ml");
-        if(this.FlaskMl == 5){
+        if (this.FlaskMl == 5) {
             setTimeout(() => {
-                beaker.setAttribute('src',"./90mlflask.png") 
+                beaker.setAttribute('src', "./90mlflask.png")
             }, 265000);
-         
-        }else if (this.FlaskMl == 10){
+
+        } else if (this.FlaskMl == 10) {
             setTimeout(() => {
-                beaker.setAttribute('src',"./100mlflask.png")
+                beaker.setAttribute('src', "./100mlflask.png")
             }, 138000);
-          
-        }else if (this.FlaskMl == 15){
+
+        } else if (this.FlaskMl == 15) {
             setTimeout(() => {
-                beaker.setAttribute('src',"./115mlflask.png")
+                beaker.setAttribute('src', "./115mlflask.png")
             }, 96000);
-           
-        }else if (this.FlaskMl == 20){
+
+        } else if (this.FlaskMl == 20) {
             setTimeout(() => {
-                beaker.setAttribute('src',"./120mlflask.png")
+                beaker.setAttribute('src', "./120mlflask.png")
             }, 74000);
-        
+
         }
     }
 
-    TextInstructionTOSpeech(id){
-//       
-
-// // Get the SpeechSynthesis object and speak the utterance
+    TextInstructionTOSpeech(id) {
+        // Get the SpeechSynthesis object and speak the utterance
 
         if (this.lang == "hi")
-        this.instruct.innerText = this.Instructions(id)[1];
-    else
-        this.instruct.innerText = this.Instructions(id)[0];
+            this.instruct.innerText = this.Instructions(id)[1];
+        else
+            this.instruct.innerText = this.Instructions(id)[0];
 
         var utterance = new SpeechSynthesisUtterance(this.instruct.innerText.toString());
         utterance.lang = 'hi-IN'
         var synth = window.speechSynthesis;
-     
-synth.speak(utterance);
+
+        synth.speak(utterance);
+    }
+    StopTimer() {
+
     }
 
-    StopTimer(){
+    //function for the validation
+ Validate(step){
+    
+    Array.from(document.getElementsByClassName("step")).forEach((e,index)=>{
+        if((index+1)!=step)
+            e.classList.add("cursor"); 
+        else
+            e.classList.remove("cursor");      
+    })
 
-    }
 }
-
+}
+var utterancei = new SpeechSynthesisUtterance(document.getElementsByClassName("glov")[0].innerText.toString());
+utterancei.lang = 'hi-IN'
+var synth = window.speechSynthesis;
+synth.speak(utterancei);
 var chemicals = new chemical();
 
-
+chemicals.Validate(1);
 //on click event for the rest of four of the chemicles which is going to thorugh the middle bicker
 Array.from(document.getElementsByClassName('clk')).forEach(e => {
 
     e.addEventListener("click", (event) => {
-
+       
         chemicals.movementOfSelectedBeaker(event.target.id)
+       
     })
     //click event for the distilled water
 
     document.getElementById("DISTILLED_-WATER1").addEventListener('click', (e) => {
         chemicals.DirectAnimationForDistillerWater();
-    })  
+    })
 })
 //clicking on stir
-    document.getElementById("stir").addEventListener('click', (e) => {
-        chemicals.stirAnimation("stir")
-    });
+document.getElementById("stir").addEventListener('click', (e) => {
+    chemicals.stirAnimation("stir")
+});
 
 //pop up
 function openPopup() {
     document.getElementById("popup").style.display = "flex";
-  }
-  
-  function closePopup() {
-    let flask =  document.getElementById('flask');
-    let lang =  document.getElementById('lang');
+console.log(document.getElementsByClassName("glov")[0].innerText);
+
+}
+
+function closePopup() {
+    let flask = document.getElementById('flask');
+    let lang = document.getElementById('lang');
 
     localStorage.clear();
-    localStorage.setItem("flask",flask.value)
-    localStorage.setItem("lang",lang.value)
+    localStorage.setItem("flask", flask.value)
+    localStorage.setItem("lang", lang.value)
     document.getElementById("popup").style.display = "none";
-  }
-  
+
+}
+
 //timer
 let timer;
 let milliseconds = 0;
@@ -356,78 +377,79 @@ let minutes = 0;
 let hours = 0;
 
 function startStopwatch() {
-  timer = setInterval(function () {
-    milliseconds++;
-    if (milliseconds === 100) {
-      milliseconds = 0;
-      seconds++;
-      if (seconds === 60) {
-        seconds = 0;
-        minutes++;
-        if (minutes === 60) {
-          minutes = 0;
-          hours++;
+    timer = setInterval(function () {
+        milliseconds++;
+        if (milliseconds === 100) {
+            milliseconds = 0;
+            seconds++;
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
         }
-      }
-    }
-    document.getElementById("stopwatch").innerText = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}:${milliseconds < 10 ? '0' + milliseconds : milliseconds}`;
+        document.getElementById("stopwatch").innerText = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}:${milliseconds < 10 ? '0' + milliseconds : milliseconds}`;
 
-    if(localStorage.getItem("flask")=='a'){
-        setTimeout(() => {
-            clearInterval(timer);
-            document.getElementById("stopwatch").innerText = "00:04:25:00"
-            stopStopwatch();
-        }, 265000);
-    }
-   else if(localStorage.getItem("flask")=='b'){
-        setTimeout(() => {
-            clearInterval(timer);
-            document.getElementById("stopwatch").innerText = "00:02:18:00"
-            stopStopwatch();
-        }, 138000);
-    }
-   else if(localStorage.getItem("flask")=='c'){
-        setTimeout(() => {
-            clearInterval(timer);
-            document.getElementById("stopwatch").innerText = "00:01:36:00"
-            stopStopwatch();
-        }, 96000);
-    }
-   else if(localStorage.getItem("flask")=='d'){
-        setTimeout(() => {
-            clearInterval(timer);
-            document.getElementById("stopwatch").innerText = "00:01:14:00"
-            stopStopwatch();
-        }, 74000);
-    }
-  }, 10);
+        if (localStorage.getItem("flask") == 'a') {
+            setTimeout(() => {
+                clearInterval(timer);
+                document.getElementById("stopwatch").innerText = "00:04:25:00"
+                stopStopwatch();
+            }, 265000);
+        }
+        else if (localStorage.getItem("flask") == 'b') {
+            setTimeout(() => {
+                clearInterval(timer);
+                document.getElementById("stopwatch").innerText = "00:02:18:00"
+                stopStopwatch();
+            }, 138000);
+        }
+        else if (localStorage.getItem("flask") == 'c') {
+            setTimeout(() => {
+                clearInterval(timer);
+                document.getElementById("stopwatch").innerText = "00:01:36:00"
+                stopStopwatch();
+            }, 96000);
+        }
+        else if (localStorage.getItem("flask") == 'd') {
+            setTimeout(() => {
+                clearInterval(timer);
+                document.getElementById("stopwatch").innerText = "00:01:14:00"
+                stopStopwatch();
+            }, 74000);
+        }
+    }, 10);
 }
 
 function stopStopwatch() {
-  clearInterval(timer);
+    clearInterval(timer);
 }
 
 function resetStopwatch() {
-  clearInterval(timer);
-  milliseconds = 0;
-  seconds = 0;
-  minutes = 0;
-  hours = 0;
-  document.getElementById("stopwatch").innerText = "00:00:00:00";
+    clearInterval(timer);
+    milliseconds = 0;
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    document.getElementById("stopwatch").innerText = "00:00:00:00";
 }
 
-document.getElementById("flask20ml").addEventListener("mouseover", function(e){
-    if(localStorage.getItem("flask")=='a'){
+document.getElementById("flask20ml").addEventListener("mouseover", function (e) {
+    if (localStorage.getItem("flask") == 'a') {
         document.getElementById("flask20ml").setAttribute("title", "Flask A 5ML");
     }
-   else if(localStorage.getItem("flask")=='b'){
-    document.getElementById("flask20ml").setAttribute("title", "Flask B 10ML");
+    else if (localStorage.getItem("flask") == 'b') {
+        document.getElementById("flask20ml").setAttribute("title", "Flask B 10ML");
     }
-   else if(localStorage.getItem("flask")=='c'){
-    document.getElementById("flask20ml").setAttribute("title", "Flask C 15ML");
+    else if (localStorage.getItem("flask") == 'c') {
+        document.getElementById("flask20ml").setAttribute("title", "Flask C 15ML");
     }
-   else if(localStorage.getItem("flask")=='d'){
-    document.getElementById("flask20ml").setAttribute("title", "Flask D 20ML");
-   }
-  
+    else if (localStorage.getItem("flask") == 'd') {
+        document.getElementById("flask20ml").setAttribute("title", "Flask D 20ML");
+    }
+
 })
+
