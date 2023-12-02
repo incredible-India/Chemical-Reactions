@@ -33,26 +33,26 @@
 }
 @keyframes rotateAnimation {
     0% {
-      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-32deg);
+      transform: translateY(-119px) translateX(70px) translateY(50px) rotate(-32deg);
     }
     25% {
-      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-29deg);
+      transform: translateY(-119px) translateX(70px) translateY(50px) rotate(-29deg);
     }
     50% {
-      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-32deg);
+      transform: translateY(-119px) translateX(70px) translateY(50px) rotate(-32deg);
     }
     75% {
-      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-29deg);
+      transform: translateY(-119px) translateX(70px) translateY(50px) rotate(-29deg);
     }
     100% {
-      transform: translateY(-100px) translateX(300px) translateY(50px) rotate(-32deg);
+      transform: translateY(-119px) translateX(70px) translateY(50px) rotate(-32deg);
       
     }
   }
  .transform-stir {
     position: relative;
-    transition: transform 0.5s ease;
-    animation: rotateAnimation 2s linear infinite;
+    transition: transform 4s ease;
+    animation: rotateAnimation 3s linear infinite;
   }
 .lab img{
     position: relative;
@@ -74,7 +74,7 @@
     /* right: -35px; */
     z-index: 99;
     left: 310px;
-    top: 534px;
+    top: 589px;
     cursor: pointer;
    
 
