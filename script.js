@@ -174,11 +174,11 @@ class chemical {
     UpdateInstruction(id) {
         if (this.lang == "hi") {
             this.instruct.innerText = this.Instructions(id)[1];
-            this.TextInstructionTOSpeech(id);
+         
         }
         else {
             this.instruct.innerText = this.Instructions(id)[0];
-            this.TextInstructionTOSpeech(id);
+    
         }
     }
     //other information print based on selected languages
@@ -304,20 +304,7 @@ class chemical {
         }
     }
 
-    TextInstructionTOSpeech(id) {
-        // Get the SpeechSynthesis object and speak the utterance
 
-        if (this.lang == "hi")
-            this.instruct.innerText = this.Instructions(id)[1];
-        else
-            this.instruct.innerText = this.Instructions(id)[0];
-
-        // var utterance = new SpeechSynthesisUtterance(this.instruct.innerText.toString());
-        // utterance.lang = 'hi-IN'
-        // var synth = window.speechSynthesis;
-
-        // synth.speak(utterance);
-    }
     StopTimer() {
 
     }
@@ -346,6 +333,8 @@ class chemical {
     }
 }
 
+
+
 var chemicals = new chemical();
 
 chemicals.Validate(1);
@@ -372,6 +361,7 @@ document.getElementById("stir").addEventListener('click', (e) => {
 function openPopup() {
     document.getElementById("popup").style.display = "flex";
 
+
 }
 
 function closePopup() {
@@ -393,6 +383,13 @@ let minutes = 0;
 let hours = 0;
 
 function startStopwatch() {
+    if (chemicals.lang == "hi") {
+        chemicals.instruct.innerText = "कृपया प्रतिक्रिया पूरी होने तक प्रतीक्षा करें";
+    }
+    else {
+
+        chemicals.instruct.innerText = "Please wait for completion of reaction";
+    }
     timer = setInterval(function () {
         milliseconds++;
         if (milliseconds === 100) {
