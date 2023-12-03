@@ -173,13 +173,12 @@ class chemical {
     //update the information in instruction box based on slected info
     UpdateInstruction(id) {
         if (this.lang == "hi") {
-            this.instruct.innerText = this.Instructions(id)[1];
-         
+            this.instruct.innerText = this.Instructions(id)[1];        
         }
         else {
-            this.instruct.innerText = this.Instructions(id)[0];
-    
+            this.instruct.innerText = this.Instructions(id)[0];  
         }
+        this.SpeechInfo(id);
     }
     //other information print based on selected languages
     OtherInfoInBasedOnSelectedLanguage() {
@@ -316,7 +315,9 @@ class chemical {
         else {
 
             this.instruct.innerText = "Reaction completed";
+            
         }
+        responsiveVoice.speak( this.instruct.innerText.toString(), 'Hindi Female', {rate: 1});
 
     }
 
@@ -331,10 +332,22 @@ class chemical {
         })
 
     }
+
+    SpeechInfo(id){
+        if (this.lang == "hi")
+        this.instruct.innerText = this.Instructions(id)[1];
+    else
+        this.instruct.innerText = this.Instructions(id)[0];
+        responsiveVoice.speak( this.instruct.innerText.toString(), 'Hindi Female', {rate: 1});
+    }
 }
 
 
-
+responsiveVoice.speak(document.getElementsByClassName("glov")[0].innerText.toString() + "PLease select the flask", 'Hindi Female', {rate: 1, onstart: function() {
+    currentlySpeaking = true;
+  }, onend: function() {
+    currentlySpeaking = false;
+  }}); // Hindi Female voice});
 var chemicals = new chemical();
 
 chemicals.Validate(1);
@@ -372,6 +385,10 @@ function closePopup() {
     localStorage.setItem("flask", flask.value)
     localStorage.setItem("lang", lang.value)
     document.getElementById("popup").style.display = "none";
+    if (currentlySpeaking) {
+        responsiveVoice.cancel();
+        currentlySpeaking = false;
+      }
 
 }
 
@@ -385,10 +402,12 @@ let hours = 0;
 function startStopwatch() {
     if (chemicals.lang == "hi") {
         chemicals.instruct.innerText = "कृपया प्रतिक्रिया पूरी होने तक प्रतीक्षा करें";
+        responsiveVoice.speak( chemicals.instruct.innerText.toString(), 'Hindi Female', {rate: 1});
     }
     else {
 
         chemicals.instruct.innerText = "Please wait for completion of reaction";
+        responsiveVoice.speak( chemicals.instruct.innerText.toString(), 'Hindi Female', {rate: 1});
     }
     timer = setInterval(function () {
         milliseconds++;
